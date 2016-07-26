@@ -3,7 +3,7 @@ function setConfig(){
       "title":"Shopping Control"  
     };
     
-    document.title  =   texts.title;
+    document.title  =  texts.title;
     document.getElementById("navTitle").innerHTML = texts.title;
 }
 
