@@ -16,7 +16,7 @@ function getTotal(list){
 function setList(list){
     var table = '<thead><tr><td>Description</td><td>Amount</td><td>Value</td><td>Action</td></tr></thead><tbody>';
     for (var key in list) {
-        table += '<tr><td>'+formatDesc(list[key].desc)+'</td><td>'+list[key].amount+'</td><td>'+formatValue(list[key].value)+'</td><td><button onclick="setUpdate('+key+')" class="btn btn-default">Edit</button> <button onclick="setUpdate('+key+')" class="btn btn-default">Delete</button></td></tr>';
+        table += '<tr><td>'+formatDesc(list[key].desc)+'</td><td>'+list[key].amount+'</td><td>'+formatValue(list[key].value)+'</td><td><button onclick="setUpdate('+key+')" class="btn btn-default">Edit</button> <button onclick="deleteData('+key+')" class="btn btn-default">Delete</button></td></tr>';
     }
     table+='</tbody>';
     document.getElementById("listTable").innerHTML = table;
@@ -74,6 +74,21 @@ function updateData(){
     list[id] = {'desc':desc, 'amount':amount, 'value':value };
     resetForm();
     setList(list);
+}
+
+function deleteData(id){
+    if(confirm('Delete this item?')){
+        if(id === list.length - 1){
+            list.pop();
+        }else if(id === 0){
+            list.shift();
+        }else{
+            list.splice(id, 1);
+        }
+        
+        setList(list);
+        
+    }
 }
 
 setList(list);
